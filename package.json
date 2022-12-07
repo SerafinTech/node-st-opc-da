@@ -1,0 +1,22 @@
+{
+  "name": "st-opc-da",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SerafinTech/node-st-opc-da.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SerafinTech/node-st-opc-da/issues"
+  },
+  "homepage": "https://github.com/SerafinTech/node-st-opc-da#readme",
+  "dependencies": {
+    "winax": "^3.3.4"
+  }
+}
