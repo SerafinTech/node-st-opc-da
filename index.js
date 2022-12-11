@@ -1,12 +1,13 @@
 const { spawn } = require("child_process")
 const EventEmitter = require("events")
-const readline = require('readline')
+const path = require("path")
+const readline = require("readline")
 
 class OPC extends EventEmitter {
     constructor() {
         super()
         this.pythonLocation = 'C:\\python27\\python.exe'
-        this.pythonSrcLocation = 'lib\\OpenOPC\\src\\opc.py'
+        this.pythonSrcLocation = path.join(__dirname, 'lib', 'OpenOPC', 'src', 'opc.py')
         this.tags = []
         this.servers = []
     }
