@@ -35,7 +35,7 @@ class OPC extends EventEmitter {
             })
 
             opcCommand.stderr.on('data', err => {
-                reject(err)
+                reject(err.toString().trim())
             })
         })
     }
@@ -88,7 +88,6 @@ class OPC extends EventEmitter {
         })
 
         Server.stderr.on('data', data => {
-            console.log(data.toString())
             setTimeout(() => {
                 this.startReadServer(server, updateRate)
             }, 5000)
