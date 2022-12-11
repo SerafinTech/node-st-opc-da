@@ -554,7 +554,10 @@ class client():
                   if (not sync and len(valid_tags) > 0) or (sync and tag_error[tag] == 0):
                      value = tag_value[tag]
                      if type(value) == pywintypes.TimeType:
-                        value = str(value)
+                        try:
+                           value = str(value)
+                        except:
+                           value = ''
                      quality = quality_str(tag_quality[tag])
                      try:
                         timestamp = str(tag_time[tag])
