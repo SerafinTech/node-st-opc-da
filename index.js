@@ -6,7 +6,7 @@ class OPC extends EventEmitter {
     constructor() {
         super()
         this.pythonLocation = 'C:\\python27\\python.exe'
-        this.pythonSrcLocation = 'libs\\OpenOPC\\src\\opc.py'
+        this.pythonSrcLocation = 'lib\\OpenOPC\\src\\opc.py'
         this.tags = []
         this.servers = []
     }
