@@ -17,6 +17,5 @@
   },
   "homepage": "https://github.com/SerafinTech/node-st-opc-da#readme",
   "dependencies": {
-    "winax": "^3.3.4"
   }
 }
