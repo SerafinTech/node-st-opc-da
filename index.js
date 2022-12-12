@@ -9,7 +9,8 @@ class OPC extends EventEmitter {
         this.pythonLocation = 'C:\\python27\\python.exe'
         this.pythonSrcLocation = path.join(__dirname, 'lib', 'OpenOPC', 'src', 'opc.py')
         this.tags = []
-        this.servers = []
+        this.servers = {}
+
     }
 
     getOPCServers() {
@@ -78,16 +79,17 @@ class OPC extends EventEmitter {
             }
         })
         
-        const Server = spawn(this.pythonLocation, [this.pythonSrcLocation, '-s', server, '-o', 'csv', '-L', updateRate, '-r', ...tagList])
+        if(this.servers[server]) this.servers[server].kill()
+        this.servers[server] = spawn(this.pythonLocation, [this.pythonSrcLocation, '-s', server, '-o', 'csv', '-L', updateRate, '-r', ...tagList])
 
         readline.createInterface({
-            input: Server.stdout,
+            input: this.servers[server].stdout,
             terminal: false
         }).on('line', (line) => {   
             this._processTagData(line.trim().split(','))
         })
 
-        Server.stderr.on('data', data => {
+        this.servers[server].stderr.on('data', data => {
             setTimeout(() => {
                 this.startReadServer(server, updateRate)
             }, 5000)
