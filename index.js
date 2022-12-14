@@ -108,6 +108,11 @@ class OPC extends EventEmitter {
             
         } 
     }
+
+    closeServer(server) {
+        this.servers[server].kill()
+    }
+    
 }
 
 module.exports = OPC
