@@ -92,18 +92,18 @@ class OPC extends EventEmitter {
         this.servers[server].stderr.on('data', data => {
             setTimeout(() => {
                 this.startReadServer(server, updateRate)
-            }, 5000)
+            }, 10000)
         })   
     }
 
     _processTagData(data) {
         if(data.length >= 4) {
-            let tag = this.tags.find(ele => ele.name === data[0])
+            let index = this.tags.findIndex(ele => ele.name == data[0])
             let value = data.slice(1, data.length-2).join()
-            tag.lastupdate = new Date(data[data.length-1]);
-            if (tag.value !== value) {
-                tag.value = value;
-                this.emit('tag change', tag)
+            this.tags[index].lastupdate = new Date(data[data.length-1]);
+            if (this.tags[index].value !== value) {
+                this.tags[index].value = value;
+                this.emit('tag change', this.tags[index])
             }
             
         } 
@@ -112,7 +112,7 @@ class OPC extends EventEmitter {
     closeServer(server) {
         this.servers[server].kill()
     }
-    
+
 }
 
 module.exports = OPC
